@@ -1,7 +1,9 @@
-= Scope everything
+Scope everything
+================
 Rails plugin that scopes all finds, updates and creates to a specific column and value (country_id, company_id etc.)
 
-= Usage
+Usage
+================
 In your environment.rb set this:
     ActiveRecord::ScopeEverything.field = 'company_id'
 
