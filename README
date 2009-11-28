@@ -1,0 +1,13 @@
+= Scope everything
+Rails plugin that scopes all finds, updates and creates to a specific column and value (country_id, company_id etc.)
+
+= Usage
+In your environment.rb set this:
+    ActiveRecord::ScopeEverything.field = 'company_id'
+
+In some before filter (probably after you have authenticated your user)
+    Thread.current['company_id'] = current_user.company.id
+
+= Bugs
+Feel free to report bugs, tomislav@infinum.hr
+
