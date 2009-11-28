@@ -9,5 +9,5 @@ In some before filter (probably after you have authenticated your user)
     Thread.current['company_id'] = current_user.company.id
 
 = Bugs
-Feel free to report bugs, tomislav@infinum.hr
+Feel free to report bugs, tomislav-?-infinum-.-hr
 
