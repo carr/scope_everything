@@ -100,7 +100,9 @@ module ActiveRecord
 
     private
       def scope_everything_id
-        Thread.current[ScopeEverything.field]
+        if ScopeEverything.field
+          Thread.current[ScopeEverything.field]
+        end
       end
 
       def create_with_scope_everything #:nodoc:
