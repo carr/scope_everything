@@ -37,6 +37,8 @@ module ActiveRecord
         class << self
           alias_method_chain :find, :scope_everything
           alias_method_chain :count, :scope_everything
+          alias_method_chain :minimum, :scope_everything          
+          alias_method_chain :maximum, :scope_everything          
         end
       end
 
@@ -81,6 +83,28 @@ module ActiveRecord
           count_without_scope_everything(*args)
         end
       end
+      
+      def minimum_with_scope_everything(*args) #:nodoc:
+        t = scope_everything_id
+        if scope_everything && !t.nil? && column_names.include?(ScopeEverything.field)
+          with_scope(:find => {:conditions => "#{quoted_table_name}.#{ScopeEverything.field} = #{t}"}) do
+            minimum_without_scope_everything(*args)
+          end
+        else
+          minimum_without_scope_everything(*args)
+        end
+      end      
+      
+      def maximum_with_scope_everything(*args) #:nodoc:
+        t = scope_everything_id
+        if scope_everything && !t.nil? && column_names.include?(ScopeEverything.field)
+          with_scope(:find => {:conditions => "#{quoted_table_name}.#{ScopeEverything.field} = #{t}"}) do
+            maximum_without_scope_everything(*args)
+          end
+        else
+          maximum_without_scope_everything(*args)
+        end
+      end      
 
       def find_with_scope_everything(*args) #:nodoc:
         t = scope_everything_id
